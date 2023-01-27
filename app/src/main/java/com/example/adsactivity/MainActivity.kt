@@ -94,8 +94,11 @@ class MainActivity : ComponentActivity() {
 
                         //banner ads
                         LoadBannerAd(adId = "ca-app-pub-3940256099942544/6300978111",AdSize.LARGE_BANNER)
-                        
-                        
+
+                        //adaptive banner ads
+                       // AdaptiveAdsBanner(adCode = "ca-app-pub-3940256099942544/9214589741",this@MainActivity)
+                        AdaptiveAdsBanner(adCode = "ca-app-pub-3940256099942544/6300978111", activity = this@MainActivity)
+
                     }
                 }
             }
