@@ -26,14 +26,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.example.adsactivity.databinding.ActivityMainBinding
 import com.example.adsactivity.ui.theme.AdsActivityTheme
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 
 class MainActivity : ComponentActivity() {
+
+    lateinit var binding: ActivityMainBinding
+
     val mainViewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         super.onCreate(savedInstanceState)
 
         MobileAds.initialize(this) {}
@@ -77,6 +83,7 @@ class MainActivity : ComponentActivity() {
                         AdaptiveAdsBanner(this@MainActivity,"ca-app-pub-3940256099942544/6300978111")
 
 
+                        //
                     }
                 }
             }
