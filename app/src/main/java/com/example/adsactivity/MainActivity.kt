@@ -39,33 +39,7 @@ class MainActivity : ComponentActivity() {
         MobileAds.initialize(this) {}
 
         setContent {
-            val nativeAdState by mainViewModel.nativeAdState.collectAsState()
-            val rememberCustomNativeAdState = rememberCustomNativeAdState(
-                adUnit = "ca-app-pub-3940256099942544/2247696110" ,
-                nativeAdOptions = NativeAdOptions.Builder()
-                    .setVideoOptions(
-                        VideoOptions.Builder()
-                            .setStartMuted(true).setClickToExpandRequested(true)
-                            .build()
-                    ).setRequestMultipleImages(true)
-                    .build(),
-                adListener = object : AdListener() {
-                    override fun onAdLoaded() {
-                        mainViewModel.updateNativeAdState(AdState(isSuccess = true))
-                    }
 
-                    override fun onAdFailedToLoad(p0: LoadAdError) {
-                        Log.d("TAG", "onAdFailedToLoad: $p0")
-                        mainViewModel.updateNativeAdState(
-                            nativeAdState = AdState(
-                                isError = true,
-                                errorMessage = p0.message
-                            )
-                        )
-                    }
-                },
-                activity = this@MainActivity
-            )
 
             AdsActivityTheme {
                 Surface(
@@ -80,24 +54,25 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(20.dp)
                     ) {
+
                         //naive ads
-                        NativeAdsSection(
-                            nativeAdState = nativeAdState,
-                            rememberNativeAdState = rememberCustomNativeAdState
+                        NativeAds(adId = "ca-app-pub-3940256099942544/2247696110")
+
+                        //banner ads
+                        LoadBannerAd(
+                            adId = "ca-app-pub-3940256099942544/6300978111",
+                            AdSize.MEDIUM_RECTANGLE
                         )
-                        
-                        //banner ads
-                        LoadBannerAd(adId = "ca-app-pub-3940256099942544/6300978111",AdSize.MEDIUM_RECTANGLE)
 
                         //banner ads
-                        LoadBannerAd(adId = "ca-app-pub-3940256099942544/6300978111",AdSize.BANNER)
+                        LoadBannerAd(adId = "ca-app-pub-3940256099942544/6300978111", AdSize.BANNER)
 
                         //banner ads
-                        LoadBannerAd(adId = "ca-app-pub-3940256099942544/6300978111",AdSize.LARGE_BANNER)
+                        LoadBannerAd(
+                            adId = "ca-app-pub-3940256099942544/6300978111",
+                            AdSize.LARGE_BANNER
+                        )
 
-                        //adaptive banner ads
-                       // AdaptiveAdsBanner(adCode = "ca-app-pub-3940256099942544/9214589741",this@MainActivity)
-                        AdaptiveAdsBanner(adCode = "ca-app-pub-3940256099942544/6300978111", activity = this@MainActivity)
 
                     }
                 }
@@ -106,113 +81,44 @@ class MainActivity : ComponentActivity() {
 
     }
 
-
     @Composable
-    fun NativeAdsSection(
-        nativeAdState: AdState,
-        rememberNativeAdState: NativeAdState?
-    ) {
-        rememberNativeAdState?.let {
-            val nativeAd by it.nativeAd.observeAsState()
-           // Text("Native Ad", style = TextStyle(fontWeight = FontWeight.Bold))
-            NativeAdsDesign(nativeAd)
-            when {
-                nativeAdState.isSuccess -> Text("Native ad loaded successfully")
-                nativeAdState.isError -> Text("Native Ad load failed: ${nativeAdState.errorMessage}")
-            }
-        }
-    }
-
-
-
-    @Composable
-    private fun NativeAdsDesign(nativeAd: NativeAd?) {
-        if (nativeAd != null)
-            NativeAdViewCompose { nativeAdView ->
-                nativeAdView.setNativeAd(nativeAd)
-                Column(
-                    modifier = Modifier.fillMaxWidth().padding(12.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-
-                    Row(modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ){
-                        //Icon
-                        NativeAdView(getView = {
-                            nativeAdView.iconView = it
-                        }, modifier = Modifier.weight(1f)) {
-                            NativeAdImage(
-                                drawable = nativeAd.icon?.drawable,
-                                contentDescription = "Icon",
-                                modifier = Modifier.wrapContentSize()
-                            )
-                        }
-
-                        //Headline
-                        NativeAdView(getView = {
-                            nativeAdView.headlineView = it
-                        },modifier = Modifier.weight(3f)) {
-                            Text(
-                                text = nativeAd.headline ?: "-",
-                                style = TextStyle(fontWeight = FontWeight.Bold),
-                                fontSize = 20.sp
-                            )
-                        }
-
-
-                    }
-
-
-
-
-
-                    //Body
-                    NativeAdView(getView = {
-                        nativeAdView.bodyView = it
-                    },) {
-                        Text(text = nativeAd.body ?: "-", fontSize = 15.sp)
-                    }
-
-                    //video
-                    nativeAd.mediaContent?.let { mediaContent ->
-                        NativeAdMediaView(
-                            modifier = Modifier.fillMaxWidth(),
-                            nativeAdView = nativeAdView,
-                            mediaContent = mediaContent,
-                            scaleType = ImageView.ScaleType.FIT_CENTER
-                        )
-
-                    }
+    fun NativeAds(adId: String) {
+        val nativeAdState by mainViewModel.nativeAdState.collectAsState()
+        val rememberCustomNativeAdState = rememberCustomNativeAdState(
+            adUnit = adId,
+            nativeAdOptions = NativeAdOptions.Builder()
+                .setVideoOptions(
+                    VideoOptions.Builder()
+                        .setStartMuted(true).setClickToExpandRequested(true)
+                        .build()
+                ).setRequestMultipleImages(true)
+                .build(),
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    mainViewModel.updateNativeAdState(AdState(isSuccess = true))
                 }
-            }
+
+                override fun onAdFailedToLoad(p0: LoadAdError) {
+                    Log.d("TAG", "onAdFailedToLoad: $p0")
+                    mainViewModel.updateNativeAdState(
+                        nativeAdState = AdState(
+                            isError = true,
+                            errorMessage = p0.message
+                        )
+                    )
+                }
+            },
+            activity = this@MainActivity
+        )
+        NativeAdsSection(
+            nativeAdState = nativeAdState,
+            rememberNativeAdState = rememberCustomNativeAdState
+        )
     }
 
 
 }
 
 
-@Composable
-fun LoadBannerAd(adId: String, size: AdSize) {
 
-    AndroidView(
-        modifier = Modifier.fillMaxWidth(),
-        factory = { context ->
-            AdView(context).apply {
-                setAdSize(size)
-                adUnitId = adId
-                loadAd(AdRequest.Builder().build())
-
-                adListener = object : AdListener() {
-                    override fun onAdFailedToLoad(adError: LoadAdError) {
-                        Log.d("TAG", "onAdFailedToLoad: $adError")
-                    }
-                    override fun onAdImpression() {
-
-                    }
-                }
-            }
-        }
-    )
-}
 
