@@ -73,6 +73,9 @@ class MainActivity : ComponentActivity() {
                             AdSize.LARGE_BANNER
                         )
 
+                        //Adaptive Ads
+                        AdaptiveAdsBanner(this@MainActivity,"ca-app-pub-3940256099942544/6300978111")
+
 
                     }
                 }
