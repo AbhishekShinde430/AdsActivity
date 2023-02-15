@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/drawable/ic_pause.xml" value="0.112" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/drawable/ic_play.xml" value="0.1" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/activity_second.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/activity_video_listing.xml" value="0.17074275362318841" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/ads_framelayout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/exoplayer_controls.xml" value="0.17074275362318841" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_native.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/player_view.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/youtubeplayer_layout.xml" value="0.1" />
       </map>
     </option>
   </component>
