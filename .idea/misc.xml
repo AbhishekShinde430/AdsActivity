@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/drawable/ic_baseline_music_unmute.xml" value="0.1195" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/drawable/ic_pause.xml" value="0.112" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/drawable/ic_play.xml" value="0.1" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/activity_main.xml" value="0.22" />
@@ -10,9 +11,17 @@
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/activity_video_listing.xml" value="0.17074275362318841" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/ads_framelayout.xml" value="0.20416666666666666" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/exoplayer_controls.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/fragment_video.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_custom_youtube.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_minimal.xml" value="0.1" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_native.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_player_ytr.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_webview.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_youtube_player.xml" value="0.17074275362318841" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/layout_ytlib_player.xml" value="0.19010416666666666" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/player_view.xml" value="0.17074275362318841" />
         <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/youtubeplayer_layout.xml" value="0.1" />
+        <entry key="..\:/Android Studio Projects/AdsActivity/app/src/main/res/layout/yt_player.xml" value="0.17074275362318841" />
       </map>
     </option>
   </component>
